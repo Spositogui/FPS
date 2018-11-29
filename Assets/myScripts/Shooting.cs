@@ -12,6 +12,8 @@ public class Shooting : NetworkBehaviour {
     [SerializeField]
     private Transform canTransform;
 
+    public GameObject bullet;
+
     void Start ()
     {
         damage = 25;
@@ -40,6 +42,7 @@ public class Shooting : NetworkBehaviour {
         if(Physics.Raycast(canTransform.TransformPoint(0, 0, 0.5f),canTransform.forward, out hit, rangeBullet))
         {
             Debug.Log(hit.transform.tag);
+            GameObject bala = Instantiate(bullet, canTransform.position, canTransform.rotation);
 
             if(hit.transform.tag == "Player")
             {
