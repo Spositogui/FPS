@@ -7,7 +7,7 @@ public class Shooting2 : MonoBehaviour {
     public GameObject theBullet;
     public Transform barrelEnd;
 
-    public int bulletSpeed;
+    public float bulletSpeed;
 
     private bool canShoot;
     private bool powerUp;
@@ -24,6 +24,7 @@ public class Shooting2 : MonoBehaviour {
         powerUp = false;
         timeLeft = 0;
         life = 2;
+        bulletSpeed = 20f;
     }
 
     void Update ()
@@ -51,8 +52,10 @@ public class Shooting2 : MonoBehaviour {
                 Shoot();
                 StartCoroutine(ShootingTime());
             }
-        }	
-	}
+        }
+
+        transform.Translate(Vector3.forward * bulletSpeed * Time.deltaTime);
+    }
 
     IEnumerator ShootingTime()
     {
@@ -75,5 +78,6 @@ public class Shooting2 : MonoBehaviour {
             timeLeft = 7;
             Destroy(others.gameObject);
         }
+
     }
 }
